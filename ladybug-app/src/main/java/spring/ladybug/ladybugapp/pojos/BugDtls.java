@@ -32,7 +32,7 @@ public class BugDtls implements java.io.Serializable {
 	private String bugPriority;
 	private String bugAssignee;
 	private String bugStatus;
-	private String bugMgrId;
+	private Integer bugMgrId;
 
 	public BugDtls() {
 	}
@@ -44,7 +44,7 @@ public class BugDtls implements java.io.Serializable {
 	}
 
 	public BugDtls(Employee emp, Project project, String bugName, String bugDesc, LocalDate bugStart, LocalDate bugEnd,
-			String bugPriority, String bugAssignee, String bugStatus, String bugMgrId) {
+			String bugPriority, String bugAssignee, String bugStatus, Integer bugMgrId) {
 		this.emp = emp;
 		this.project = project;
 		this.bugName = bugName;
@@ -155,11 +155,11 @@ public class BugDtls implements java.io.Serializable {
 	}
 
 	@Column(name = "bug_mgr_id", length = 45)
-	public String getBugMgrId() {
+	public Integer getBugMgrId() {
 		return this.bugMgrId;
 	}
 
-	public void setBugMgrId(String bugMgrId) {
+	public void setBugMgrId(Integer bugMgrId) {
 		this.bugMgrId = bugMgrId;
 	}
 

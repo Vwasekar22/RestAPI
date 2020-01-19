@@ -1,6 +1,6 @@
 package spring.ladybug.ladybugapp.controller;
 
-import java.util.Map;
+
 import java.util.Optional;
 import java.util.UUID;
 
@@ -15,19 +15,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import spring.ladybug.ladybugapp.pojos.Login;
+import spring.ladybug.ladybugapp.services.AuthServices;
 import spring.ladybug.ladybugapp.services.EmailService;
-import spring.ladybug.ladybugapp.services.EmployeeService;
 
 @CrossOrigin(origins = "*")
 @RestController
 public class PasswordController {
 
 	@Autowired
-	private EmployeeService employeeService;
+	private AuthServices authService;
 
 	@Autowired
 	private EmailService emailService;
@@ -49,14 +48,14 @@ public class PasswordController {
 		System.out.println(request.getScheme() + " " + request.getServerName() + " " + request.getServletPath() + " "
 				+ request.getServletContext());
 		String email = emps.getEmail();
-		try {
-			Thread.sleep(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//		try {
+//			Thread.sleep(10000);
+//		} catch (InterruptedException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		// Lookup user in database by e-mail
-		Optional<Login> optional = employeeService.findLoginByEmail(email);
+		Optional<Login> optional = authService.findLoginByEmail(email);
 
 		if (!optional.isPresent()) {
 			return new ResponseEntity<Boolean>(false, HttpStatus.OK);
@@ -67,7 +66,7 @@ public class PasswordController {
 			emp.setResetToken(UUID.randomUUID().toString());
 
 			// Save token to database
-			employeeService.save(emp);
+			authService.save(emp);
 
 			String appUrl = request.getScheme() + "://" + request.getRemoteAddr();
 			System.out.println(request.getRemoteAddr());
@@ -93,7 +92,7 @@ public class PasswordController {
 	  
 	  // Find the user associated with the reset token Optional<User> user =
 		System.out.println(token);
-	  Optional<Login> employee =  employeeService.findLoginByResetToken(token);
+	  Optional<Login> employee =  authService.findLoginByResetToken(token);
 	  System.out.println(employee);
 	  // This should always be non-null but we check just in case if
 	  if(employee.isPresent()) {
@@ -111,7 +110,7 @@ public class PasswordController {
 	  
 	  
 	  // Save user userService.saveUser(resetUser);
-	  employeeService.save(resetEmployee);
+	  authService.save(resetEmployee);
 	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 	  
 	  }

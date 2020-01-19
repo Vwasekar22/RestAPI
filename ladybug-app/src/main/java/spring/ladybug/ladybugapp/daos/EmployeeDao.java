@@ -3,17 +3,12 @@ package spring.ladybug.ladybugapp.daos;
 import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
+import spring.ladybug.ladybugapp.pojos.Employee;
 import spring.ladybug.ladybugapp.pojos.Login;
 
-@Repository
-public interface EmployeeDao extends JpaRepository<Login, String>{
+public interface EmployeeDao extends JpaRepository<Employee, Integer>{
 	
-
-	Optional<Login> findByEmail(String email);
+	Optional<Employee> findByLogin(Login login);
 	
-	Optional<Login> findByResetToken(String resetToken);
-	
-
 }

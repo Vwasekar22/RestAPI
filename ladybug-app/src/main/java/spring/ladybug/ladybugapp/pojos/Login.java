@@ -80,6 +80,7 @@ public class Login implements java.io.Serializable {
 	}
 
 	
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@Column(name = "password", nullable = false, length = 45)
 	public String getPassword() {
 		return this.password;

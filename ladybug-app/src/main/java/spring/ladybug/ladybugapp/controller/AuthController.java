@@ -31,9 +31,9 @@ public class AuthController {
 		Login temp = loginService.authenticateEmp(emp);
 		
 		if(temp != null){
-	//		Employee tempEmp = temp.getEmp();
+			Employee tempEmp = temp.getEmp();
 			System.out.println(temp);
-			return new ResponseEntity<Login>(temp,HttpStatus.OK);
+			return new ResponseEntity<Employee>(tempEmp,HttpStatus.OK);
 		}
 		
 		return new ResponseEntity<Boolean>(false,HttpStatus.OK);

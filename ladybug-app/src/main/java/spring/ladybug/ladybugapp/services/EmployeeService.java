@@ -7,7 +7,7 @@ public interface EmployeeService {
 
 	public Employee getEmployeeByLogin(Login login);
 
-	// public boolean registerNewEmp(Employee emp);
+	public boolean registerNewEmp(Employee emp);
 
 	
 

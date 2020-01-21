@@ -27,9 +27,8 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "login", catalog = "ladybug_app_main")
-@JsonIdentityInfo(
-		  generator = ObjectIdGenerators.PropertyGenerator.class, 
-		  property = "email")
+  @JsonIdentityInfo( generator = ObjectIdGenerators.PropertyGenerator.class,
+  property = "email")
 public class Login implements java.io.Serializable {
 
 	private String email;

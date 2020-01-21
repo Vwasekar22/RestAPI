@@ -1,7 +1,6 @@
 package spring.ladybug.ladybugapp.controller;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import spring.ladybug.ladybugapp.pojos.Employee;
+import spring.ladybug.ladybugapp.pojos.Login;
+import spring.ladybug.ladybugapp.services.AuthServices;
 import spring.ladybug.ladybugapp.services.EmployeeService;
 
 @CrossOrigin(origins = "*")
@@ -21,6 +22,9 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService empService;
+	
+	@Autowired
+	private AuthServices authService;
 
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	//public ResponseEntity<?> m2(@RequestBody ArrayList<LinkedHashMap<String,String>> arr) {
@@ -39,6 +43,27 @@ public class EmployeeController {
 
 		return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 
+	}
+	
+	
+	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
+	// public ResponseEntity<?> m2(@RequestBody
+	// ArrayList<LinkedHashMap<String,String>> arr) {
+	public ResponseEntity<?> m1(@RequestBody Login log) {
+		Login lg = null;
+		Optional<Login> login = authService.findLoginByEmail(log.getEmail());
+		if (login.isPresent()) {
+			lg = login.get();
+		}
+		if(lg != null) {
+			
+			boolean status = empService.deleteEmp(lg);
+			return new ResponseEntity<Boolean>(status, HttpStatus.OK);
+		}
+//		if ( lg!=null && empService.deleteEmp(lg)) {
+//			
+//		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 
 }

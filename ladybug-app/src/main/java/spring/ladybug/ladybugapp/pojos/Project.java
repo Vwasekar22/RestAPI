@@ -15,7 +15,10 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -23,7 +26,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "projects", catalog = "ladybug_app_main")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" }) 
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,
 property = "projectId")
 public class Project implements java.io.Serializable {
@@ -91,6 +94,8 @@ public class Project implements java.io.Serializable {
 		this.projectMgr = projectMgr;
 	}
 
+	
+	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
 	public Set<BugDtls> getBugDtls() {
 		return this.bugDtls;
@@ -100,6 +105,7 @@ public class Project implements java.io.Serializable {
 		this.bugDtls = bugDtls;
 	}
 
+	@JsonProperty(access = Access.WRITE_ONLY)
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "emp_project_relation", catalog = "ladybug_app_main", joinColumns = {
 			@JoinColumn(name = "proj_id", nullable = false, updatable = false) }, inverseJoinColumns = {
@@ -107,7 +113,7 @@ public class Project implements java.io.Serializable {
 	public Set<Employee> getEmployees() {
 		return this.employees;
 	}
-
+	
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
 	}

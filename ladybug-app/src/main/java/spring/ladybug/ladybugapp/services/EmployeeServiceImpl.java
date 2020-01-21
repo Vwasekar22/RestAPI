@@ -17,7 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeDao empDao;
-	
+
 	@Autowired
 	private LoginAuthDao logDao;
 
@@ -43,33 +43,40 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		return true;
 	}
-	
+
 	@Override
 	public boolean deleteEmp(Login login) {
 		try {
-			System.out.println("Login->"+login.getEmail());
+			System.out.println("Login->" + login.getEmail());
 
-			Employee emp = login.getEmp();			
+			Employee emp = login.getEmp();
 			System.out.println(login);
 			emp.removeLogin();
-			
-			
-			for(Project p: emp.getProjects()){
+
+			for (Project p : emp.getProjects()) {
 				p.removeEmployee(emp);
 			}
-			for(BugDtls bg: emp.getBugDtls()) {
+			for (BugDtls bg : emp.getBugDtls()) {
 				emp.removeBugDetails(bg);
 			}
-			
+
 			logDao.delete(login);
-			
-		}
-		catch (Exception e)
-		{
+
+		} catch (Exception e) {
 			return false;
 		}
-			return true;	
+		return true;
 	}
 
+	@Override
+	public Employee getEmployeeById(int id) {
+		Employee emp = null;
+		Optional<Employee> employee = empDao.findById(id);
+		if (employee != null) {
+			emp = employee.get();
+			return emp;
+		}
 
+		return null;
+	}
 }

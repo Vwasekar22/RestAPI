@@ -11,6 +11,6 @@ public interface EmployeeService {
 	
 	public boolean deleteEmp(Login login);
 
-	
+	Employee getEmployeeById(int id);
 
 }

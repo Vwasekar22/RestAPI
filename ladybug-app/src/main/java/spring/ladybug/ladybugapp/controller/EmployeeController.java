@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.ladybug.ladybugapp.pojos.Employee;
 import spring.ladybug.ladybugapp.pojos.Login;
+import spring.ladybug.ladybugapp.pojos.Project;
 import spring.ladybug.ladybugapp.services.AuthServices;
 import spring.ladybug.ladybugapp.services.EmployeeService;
 
@@ -63,6 +65,18 @@ public class EmployeeController {
 //		if ( lg!=null && empService.deleteEmp(lg)) {
 //			
 //		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/employee/{empId}", method = RequestMethod.GET)
+	public ResponseEntity<?> m3(@PathVariable("empId")int empId) {
+		
+		
+		Employee employee=empService.getEmployeeById(empId);
+		
+		if(employee!=null) {
+			return new ResponseEntity<Employee>(employee, HttpStatus.OK);
+		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 

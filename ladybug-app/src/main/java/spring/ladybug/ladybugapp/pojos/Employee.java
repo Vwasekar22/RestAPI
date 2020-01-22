@@ -48,7 +48,18 @@ public class Employee implements java.io.Serializable {
 	public Employee() {
 		System.out.println("in emp d controller");
 	}
+	public Employee(Integer empId,String firstName,String lastName) {
+		this.empId=empId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+	}
 
+	public Employee(Integer empId,String firstName,String lastName, Login login) {
+		this.empId=empId;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.login = login;
+	}
 	public Employee(Employee empMgr, String firstName, String lastName, LocalDate createdOn, String userName,
 			Set<Employee> employeeSubOrdinates, Set<BugDtls> bugDtls, Login login, Set<Project> projects) {
 		this.empMgr = empMgr;

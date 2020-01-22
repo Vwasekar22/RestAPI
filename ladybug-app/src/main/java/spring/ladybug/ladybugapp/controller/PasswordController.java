@@ -1,6 +1,5 @@
 package spring.ladybug.ladybugapp.controller;
 
-
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,16 +30,14 @@ public class PasswordController {
 	@Autowired
 	private EmailService emailService;
 
-	//@Autowired
+	// @Autowired
 	// private BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	public PasswordController() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	// Display forgotPassword page
-
-	// Process form submission from forgotPassword page
+	
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ResponseEntity<?> processForgotPasswordForm(@RequestBody Login emps, HttpServletRequest request) {
 		System.out.println("inside forgot");
@@ -48,12 +45,7 @@ public class PasswordController {
 		System.out.println(request.getScheme() + " " + request.getServerName() + " " + request.getServletPath() + " "
 				+ request.getServletContext());
 		String email = emps.getEmail();
-//		try {
-//			Thread.sleep(10000);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
+
 		// Lookup user in database by e-mail
 		Optional<Login> optional = authService.findLoginByEmail(email);
 
@@ -75,7 +67,8 @@ public class PasswordController {
 			passwordResetEmail.setFrom("ladybugaug19@gmail.com");
 			passwordResetEmail.setTo(emp.getEmail());
 			passwordResetEmail.setSubject("Password Reset Request");
-			passwordResetEmail.setText("To reset your password, click the link below:\n" + appUrl + "/reset/" + emp.getResetToken());
+			passwordResetEmail.setText(
+					"To reset your password, click the link below:\n" + appUrl + "/reset/" + emp.getResetToken());
 
 			emailService.sendEmail(passwordResetEmail);
 
@@ -86,42 +79,32 @@ public class PasswordController {
 	}
 
 	// Process reset password form
-	
-	@RequestMapping(value = "/reset/{token}", method = RequestMethod.POST) 
-	public ResponseEntity<?> setNewPassword(@RequestBody Login emp, HttpServletRequest request, @PathVariable("token")String token){
-	  
-	  // Find the user associated with the reset token Optional<User> user =
+	@RequestMapping(value = "/reset/{token}", method = RequestMethod.POST)
+	public ResponseEntity<?> setNewPassword(@RequestBody Login emp, HttpServletRequest request,
+			@PathVariable("token") String token) {
+
+		// Find the user associated with the reset token Optional<User> user =
 		System.out.println(token);
-	  Optional<Login> employee =  authService.findLoginByResetToken(token);
-	  System.out.println(employee);
-	  // This should always be non-null but we check just in case if
-	  if(employee.isPresent()) {
-	  System.out.println(token);
-	  Login resetEmployee = employee.get();
-	  System.out.println(resetEmployee.getResetToken()+" "+resetEmployee.getPassword());
-	  
-	  System.out.println(emp.getPassword());
-	  // Set new password
-	  resetEmployee.setPassword(emp.getPassword());
-	  
-	  
-	  // Set the reset token to null so it cannot be used again
-	  resetEmployee.setResetToken(null);
-	  
-	  
-	  // Save user userService.saveUser(resetUser);
-	  authService.save(resetEmployee);
-	  return new ResponseEntity<Boolean>(true, HttpStatus.OK);
-	  
-	  }
+		Optional<Login> employee = authService.findLoginByResetToken(token);
+		System.out.println(employee);
+		// This should always be non-null but we check just in case if
+		if (employee.isPresent()) {
+			System.out.println(token);
+			Login resetEmployee = employee.get();
+			System.out.println(resetEmployee.getResetToken() + " " + resetEmployee.getPassword());
+
+			System.out.println(emp.getPassword());
+			// Set new password
+			resetEmployee.setPassword(emp.getPassword());
+
+			// Set the reset token to null so it cannot be used again
+			resetEmployee.setResetToken(null);
+
+			// Save user userService.saveUser(resetUser);
+			authService.save(resetEmployee);
+			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+
+		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-
-	// Going to reset page without a token redirects to login page
-
-	/*
-	 * @ExceptionHandler(MissingServletRequestParameterException.class) public
-	 * ModelAndView handleMissingParams(MissingServletRequestParameterException ex)
-	 * { return new ModelAndView("redirect:login"); }
-	 */
 }

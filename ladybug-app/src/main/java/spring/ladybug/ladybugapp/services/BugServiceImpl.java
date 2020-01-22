@@ -1,5 +1,6 @@
 package spring.ladybug.ladybugapp.services;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -11,9 +12,10 @@ import spring.ladybug.ladybugapp.daos.BugDao;
 import spring.ladybug.ladybugapp.pojos.BugDtls;
 import spring.ladybug.ladybugapp.pojos.Employee;
 import spring.ladybug.ladybugapp.pojos.EnumBugStatus;
+import spring.ladybug.ladybugapp.pojos.Login;
 
 @Service
-public class BugServiceImpl implements BugService {
+public class BugServiceImpl implements BugService,Serializable {
 	
 	@Autowired
 	private BugDao bugDao;
@@ -59,6 +61,36 @@ public class BugServiceImpl implements BugService {
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public List<Object> getBugById(int id) {
+	 Optional<BugDtls>	optionalBug = bugDao.findById(id);
+	 BugDtls bug = null;
+	 if(optionalBug != null) {
+		 bug=optionalBug.get();
+		 Employee emp = bug.getEmp();
+		 if(bug!=null) {
+		 List<Object> bugDetails = new ArrayList<>();
+		 
+//			Object empObj = new Object() {
+//				int bugIssuer = bug.getEmp().getEmpId();
+//				String firstName = bug.getEmp().getFirstName();
+//				String lastName = bug.getEmp().getLastName();
+//				BugDtls bugDtls = bug;
+//			};
+		 
+		 bugDetails.add(bug);
+		 
+		 Login log = new Login(emp.getLogin().getRole());
+		 
+		 //bugDetails.add(emp.getFirstName()+" "+emp.getLastName());
+		 bugDetails.add(new Employee(emp.getEmpId(), emp.getFirstName(), emp.getLastName(), log));
+		 return bugDetails;
+		 }
+	 }
+	 
+	 	return null;
 	}
 
 

@@ -10,5 +10,4 @@ public interface ProjectDao extends JpaRepository<Project, Integer> {
 	
 	List<Project> findAll();
 	
-	
 }

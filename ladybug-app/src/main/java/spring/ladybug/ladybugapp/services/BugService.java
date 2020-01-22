@@ -12,5 +12,7 @@ public interface BugService {
 	List<BugDtls> listNullAssigneBug();
 	
 	boolean changeBugStatus(BugDtls bug);
+	
+	List<Object> getBugById(int id);
 
 }

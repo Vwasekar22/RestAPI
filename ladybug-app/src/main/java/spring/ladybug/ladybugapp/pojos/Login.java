@@ -4,6 +4,8 @@ package spring.ladybug.ladybugapp.pojos;
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -34,7 +36,7 @@ public class Login implements java.io.Serializable {
 	private String email;
 	private Employee emp;
 	private String password;
-	private String role;
+	private EnumEmpRoles role;
 	private Date lastLogin;
 	private String resetToken;
 
@@ -42,13 +44,17 @@ public class Login implements java.io.Serializable {
 		System.out.println("in login d controller");
 	}
 
+	public Login(EnumEmpRoles role) {
+		this.role = role;
+	}
+	
 	public Login(String email, String password) {
 		this.email = email;
 		this.password = password;
 		System.out.println("in login e and p constructor");
 	}
 
-	public Login(String email, Employee emp, String password, String role, Date lastLogin, String resetToken) {
+	public Login(String email, Employee emp, String password, EnumEmpRoles role, Date lastLogin, String resetToken) {
 		this.email = email;
 		this.emp = emp;
 		this.password = password;
@@ -89,12 +95,13 @@ public class Login implements java.io.Serializable {
 		this.password = password;
 	}
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "role", length = 45)
-	public String getRole() {
+	public EnumEmpRoles getRole() {
 		return this.role;
 	}
 
-	public void setRole(String role) {
+	public void setRole(EnumEmpRoles role) {
 		this.role = role;
 	}
 

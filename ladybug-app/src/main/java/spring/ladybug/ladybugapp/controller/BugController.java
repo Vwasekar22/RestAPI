@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,9 +23,9 @@ public class BugController {
 	@Autowired
 	private BugService bugService;
 
-	@RequestMapping(value = "/createbug", method = RequestMethod.POST)
+	@RequestMapping(value = "/addBug", method = RequestMethod.POST)
 	public ResponseEntity<?> m2(@RequestBody BugDtls bug) {
-
+			System.out.println(bug.getProject().getProjectId());
 		if(bugService.createBug(bug)) {
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 		}
@@ -53,4 +54,17 @@ public class BugController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 		
 	}
+	
+	@RequestMapping(value = "/bug/{bugId}", method = RequestMethod.GET)
+	public ResponseEntity<?> m5(@PathVariable("bugId")Integer bugId) {
+		List<Object> bugDetails = bugService.getBugById(bugId);
+		if(bugDetails!=null)
+		{	
+			return new ResponseEntity<List<Object>>(bugDetails, HttpStatus.OK);
+		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+		
+	}
+	
+	
 }

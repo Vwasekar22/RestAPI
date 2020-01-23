@@ -39,7 +39,7 @@ CREATE TABLE `bug_dtls` (
   KEY `FK_PROJ_ID_idx` (`bug_project_id`),
   CONSTRAINT `FK_EMP_ID` FOREIGN KEY (`bug_by_emp_id`) REFERENCES `employees` (`emp_id`),
   CONSTRAINT `FK_PROJ_ID` FOREIGN KEY (`bug_project_id`) REFERENCES `projects` (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=245 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=246 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,7 +48,7 @@ CREATE TABLE `bug_dtls` (
 
 LOCK TABLES `bug_dtls` WRITE;
 /*!40000 ALTER TABLE `bug_dtls` DISABLE KEYS */;
-INSERT INTO `bug_dtls` (`bug_id`, `bug_name`, `bug_desc`, `bug_start`, `bug_end`, `bug_priority`, `bug_by_emp_id`, `bug_assignee`, `bug_project_id`, `bug_status`, `bug_mgr_id`) VALUES (240,'BUG1','BUG-DESC-1',NULL,NULL,'HIGH',126,NULL,11,'NEW',129),(241,'BUG2','BUG-DESC-2',NULL,NULL,'LOW',127,NULL,11,'NEW',129),(242,'BUG3','BUG-DESC-3',NULL,NULL,'HIGHEST',126,NULL,22,'NEW',129),(243,'BUG4','BUG-DESC-4',NULL,NULL,'MEDIUM',127,NULL,22,'NEW',129),(244,'BUG5','BUG-DESC-5',NULL,NULL,'LOW',128,NULL,33,'NEW',130);
+INSERT INTO `bug_dtls` (`bug_id`, `bug_name`, `bug_desc`, `bug_start`, `bug_end`, `bug_priority`, `bug_by_emp_id`, `bug_assignee`, `bug_project_id`, `bug_status`, `bug_mgr_id`) VALUES (240,'BUG1','BUG-DESC-1',NULL,NULL,'HIGH',126,NULL,11,'NEW',129),(241,'BUG2','BUG-DESC-2',NULL,NULL,'LOW',127,NULL,11,'NEW',129),(242,'BUG3','BUG-DESC-3',NULL,NULL,'HIGHEST',126,NULL,22,'NEW',129),(243,'BUG4','BUG-DESC-4',NULL,NULL,'MEDIUM',127,NULL,22,'NEW',129),(244,'BUG5','BUG-DESC-5',NULL,NULL,'LOW',128,NULL,33,'NEW',130),(245,'Employee Registration Not Visible','Employee Registration functionality should be visible for Admin to add a new employee to this system',NULL,NULL,'HIGHEST',126,NULL,11,'NEW',129);
 /*!40000 ALTER TABLE `bug_dtls` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -61,4 +61,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-23 13:01:28
+-- Dump completed on 2020-01-23 13:19:13

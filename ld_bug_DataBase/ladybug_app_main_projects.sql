@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `projects`;
 CREATE TABLE `projects` (
   `project_id` int(11) NOT NULL AUTO_INCREMENT,
   `project_name` varchar(45) NOT NULL,
-  `project_desc` varchar(200) DEFAULT NULL,
+  `project_desc` varchar(250) DEFAULT NULL,
   `project_mgr` int(11) DEFAULT NULL,
   PRIMARY KEY (`project_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -50,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-23 13:01:28
+-- Dump completed on 2020-01-23 13:19:13

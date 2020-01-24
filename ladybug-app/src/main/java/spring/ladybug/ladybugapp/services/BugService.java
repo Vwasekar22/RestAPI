@@ -4,6 +4,7 @@ import java.util.List;
 
 import spring.ladybug.ladybugapp.pojos.BugDtls;
 import spring.ladybug.ladybugapp.pojos.Employee;
+import spring.ladybug.ladybugapp.pojos.Project;
 
 public interface BugService {
 	
@@ -14,5 +15,7 @@ public interface BugService {
 	boolean changeBugStatus(BugDtls bug);
 	
 	List<Object> getBugById(int id);
+	
+	List<BugDtls> getBugDetailsByPaging(Project project,int pageNO, int pageSize);
 
 }

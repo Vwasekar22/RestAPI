@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import spring.ladybug.ladybugapp.pojos.BugDtls;
 import spring.ladybug.ladybugapp.pojos.Employee;
+import spring.ladybug.ladybugapp.pojos.Project;
 import spring.ladybug.ladybugapp.services.BugService;
 
 @CrossOrigin(origins = "*")
@@ -61,6 +62,17 @@ public class BugController {
 		if(bugDetails!=null)
 		{	
 			return new ResponseEntity<List<Object>>(bugDetails, HttpStatus.OK);
+		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+		
+	}
+	
+	//Pagination trial
+	@RequestMapping(value = "/bugPageSort/{projectId}/{pageNo}/{pageSize}", method = RequestMethod.GET)
+	public ResponseEntity<?> m6(@PathVariable("projectId")Integer projectId, @PathVariable("pageNo")Integer pageNo,@PathVariable("pageSize")Integer pageSize) {
+		List<BugDtls> bugDetails = bugService.getBugDetailsByPaging(new Project(projectId), pageNo, pageSize);
+		if(bugDetails!=null) {
+			return new ResponseEntity<List<BugDtls>>(bugDetails,HttpStatus.OK);
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 		

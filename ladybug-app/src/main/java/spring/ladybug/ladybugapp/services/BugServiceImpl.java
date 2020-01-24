@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import spring.ladybug.ladybugapp.daos.BugDao;
@@ -13,6 +16,7 @@ import spring.ladybug.ladybugapp.pojos.BugDtls;
 import spring.ladybug.ladybugapp.pojos.Employee;
 import spring.ladybug.ladybugapp.pojos.EnumBugStatus;
 import spring.ladybug.ladybugapp.pojos.Login;
+import spring.ladybug.ladybugapp.pojos.Project;
 
 @Service
 public class BugServiceImpl implements BugService,Serializable {
@@ -91,6 +95,13 @@ public class BugServiceImpl implements BugService,Serializable {
 	 }
 	 
 	 	return null;
+	}
+
+	@Override
+	public List<BugDtls> getBugDetailsByPaging(Project project,int pageNo, int pageSize) {
+		Pageable page = PageRequest.of(pageNo, pageSize, Sort.by("bugId"));
+		List<BugDtls> bugList = bugDao.findByProject(project, page);
+		return bugList;
 	}
 
 

@@ -41,6 +41,10 @@ public class Project implements java.io.Serializable {
 	public Project() {
 	}
 
+	public Project(int projectId) {
+		this.projectId=projectId;
+	}
+	
 	public Project(int projectId, String projectName) {
 		this.projectId = projectId;
 		this.projectName = projectName;

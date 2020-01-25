@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface BugDao extends JpaRepository<BugDtls, Integer> {
 	
-	List<BugDtls> findByProject(Project project,Pageable page);
+	List<BugDtls> findByProject(Project project);
+	
+	long countByProject(Project p);
 
 }

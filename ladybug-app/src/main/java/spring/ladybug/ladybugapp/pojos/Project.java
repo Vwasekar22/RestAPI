@@ -99,7 +99,7 @@ public class Project implements java.io.Serializable {
 	}
 
 	
-	
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "project")
 	public Set<BugDtls> getBugDtls() {
 		return this.bugDtls;

@@ -1,8 +1,10 @@
 package spring.ladybug.ladybugapp.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import spring.ladybug.ladybugapp.daos.EmployeeDao;
@@ -78,5 +80,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 
 		return null;
+	}
+
+	@Override
+	public List<Employee> getEmpList() {
+		List<Employee> emps = empDao.findAll(Sort.by("empId"));
+		return emps;
 	}
 }

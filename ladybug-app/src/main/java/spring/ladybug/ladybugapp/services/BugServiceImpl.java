@@ -2,10 +2,12 @@ package spring.ladybug.ladybugapp.services;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.*;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -97,11 +99,24 @@ public class BugServiceImpl implements BugService,Serializable {
 	 	return null;
 	}
 
+//	//@SuppressWarnings("serial")
+//	@Override
+//	public Map<String,Object> getBugDetailsByPaging(Project project,int pageNo, int pageSize) {
+//		Pageable page = PageRequest.of(pageNo, pageSize, Sort.by("bugId"));
+//		//Example<Project> ex = Example.of(project);
+//		Long count = bugDao.countByProject(project);
+//		Long totalPages = count/pageSize;
+//		List<BugDtls> bugList = bugDao.findByProject(project, page);
+//		Map<String,Object> bugDtlsObjectMap = new HashMap<>();
+//		bugDtlsObjectMap.put("bugData", bugList);
+//		bugDtlsObjectMap.put("totalPages", totalPages);
+//		return bugDtlsObjectMap;
+//	}
+
 	@Override
-	public List<BugDtls> getBugDetailsByPaging(Project project,int pageNo, int pageSize) {
-		Pageable page = PageRequest.of(pageNo, pageSize, Sort.by("bugId"));
-		List<BugDtls> bugList = bugDao.findByProject(project, page);
-		return bugList;
+	public List<BugDtls> getBugByProjectId(int projectId) {
+		List<BugDtls> bugsListByProject = bugDao.findByProject(new Project(projectId));
+		return bugsListByProject;
 	}
 
 

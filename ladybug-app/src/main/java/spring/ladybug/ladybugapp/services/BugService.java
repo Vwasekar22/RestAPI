@@ -1,9 +1,9 @@
 package spring.ladybug.ladybugapp.services;
 
 import java.util.List;
+import java.util.Map;
 
 import spring.ladybug.ladybugapp.pojos.BugDtls;
-import spring.ladybug.ladybugapp.pojos.Employee;
 import spring.ladybug.ladybugapp.pojos.Project;
 
 public interface BugService {
@@ -16,6 +16,8 @@ public interface BugService {
 	
 	List<Object> getBugById(int id);
 	
-	List<BugDtls> getBugDetailsByPaging(Project project,int pageNO, int pageSize);
+	//Map<String,Object> getBugDetailsByPaging(Project project,int pageNO, int pageSize);
+	
+	List<BugDtls> getBugByProjectId(int projectId);
 
 }

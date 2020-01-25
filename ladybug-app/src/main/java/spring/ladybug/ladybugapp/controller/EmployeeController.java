@@ -82,6 +82,21 @@ public class EmployeeController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 	
+	/*
+	 * Fetching Managers details using currently logged in emp.
+	 */
+	@RequestMapping(value = "/empMgr/{empId}", method = RequestMethod.GET)
+	public ResponseEntity<?> m6(@PathVariable("empId")int empId) {
+		
+		
+//		Employee employee=empService.getEmployeeById(empId);
+		Employee mgrDtls = empService.getEmployeeById(empId).getEmpMgr();
+		if(mgrDtls!=null) {
+			return new ResponseEntity<Employee>(mgrDtls, HttpStatus.OK);
+		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+	
 	@GetMapping(value = "/employees")
 	public ResponseEntity<?> m4(){
 		List<Employee> emps = empService.getEmpList();

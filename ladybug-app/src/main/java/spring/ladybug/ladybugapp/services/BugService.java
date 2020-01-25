@@ -19,5 +19,9 @@ public interface BugService {
 	//Map<String,Object> getBugDetailsByPaging(Project project,int pageNO, int pageSize);
 	
 	List<BugDtls> getBugByProjectId(int projectId);
+	
+	List<Integer> getBugStatusCount();
+	
+	List<Integer> getBugPriorityCount();
 
 }

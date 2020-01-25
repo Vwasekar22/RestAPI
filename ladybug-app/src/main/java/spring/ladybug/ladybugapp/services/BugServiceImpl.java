@@ -2,20 +2,16 @@ package spring.ladybug.ladybugapp.services;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.*;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import spring.ladybug.ladybugapp.daos.BugDao;
 import spring.ladybug.ladybugapp.pojos.BugDtls;
 import spring.ladybug.ladybugapp.pojos.Employee;
+import spring.ladybug.ladybugapp.pojos.EnumBugPriority;
 import spring.ladybug.ladybugapp.pojos.EnumBugStatus;
 import spring.ladybug.ladybugapp.pojos.Login;
 import spring.ladybug.ladybugapp.pojos.Project;
@@ -29,7 +25,7 @@ public class BugServiceImpl implements BugService,Serializable {
 	@Override
 	public boolean createBug(BugDtls bug) {
 		try {
-			bug.setBugStatus(EnumBugStatus.NEW.name());
+			bug.setBugStatus(EnumBugStatus.NEW);
 			bugDao.save(bug);
 		} catch (Exception e) {
 			return false;
@@ -55,14 +51,14 @@ public class BugServiceImpl implements BugService,Serializable {
 		BugDtls bu = b.get();
 		Employee emp = bug.getEmp();
 		if(bu!=null) {
-			EnumBugStatus status = EnumBugStatus.valueOf(bug.getBugStatus());
+			EnumBugStatus status = bug.getBugStatus();
 			if(status==EnumBugStatus.NEW) {
-				bu.setBugStatus(EnumBugStatus.INPROGRESS.name());
+				bu.setBugStatus(EnumBugStatus.INPROGRESS);
 				bu.setBugAssignee(emp.getEmpId());
 				return true;
 			}
 			else if(status==EnumBugStatus.INPROGRESS) {
-				bu.setBugStatus(EnumBugStatus.FIXED.name());
+				bu.setBugStatus(EnumBugStatus.FIXED);
 				return true;
 			}
 		}
@@ -117,6 +113,70 @@ public class BugServiceImpl implements BugService,Serializable {
 	public List<BugDtls> getBugByProjectId(int projectId) {
 		List<BugDtls> bugsListByProject = bugDao.findByProject(new Project(projectId));
 		return bugsListByProject;
+	}
+
+	@Override
+	public List<Integer> getBugStatusCount() {
+		List<BugDtls> bugList = bugDao.findAll();
+		List<Integer> bugCount = new ArrayList<>();
+		if(bugList!=null)
+		{
+			int n=0;
+			int inProgress=0;
+			int fixed=0;
+			int closed=0;
+			for(BugDtls b: bugList) {
+				if(b.getBugStatus()==EnumBugStatus.NEW) {
+					n++;
+				}
+				else if(b.getBugStatus()==EnumBugStatus.INPROGRESS){
+					inProgress++;
+				}
+				else if(b.getBugStatus()==EnumBugStatus.FIXED){
+					fixed++;
+				}
+				else if(b.getBugStatus()==EnumBugStatus.CLOSED){
+					closed++;
+				}
+			}
+			bugCount.add(n);
+			bugCount.add(inProgress);
+			bugCount.add(fixed);
+			bugCount.add(closed);
+		}
+		return bugCount;
+	}
+
+	@Override
+	public List<Integer> getBugPriorityCount() {
+		List<BugDtls> bugList = bugDao.findAll();
+		List<Integer> bugCount = new ArrayList<>();
+		if(bugList!=null)
+		{
+			int low=0;
+			int medium=0;
+			int high=0;
+			int highest=0;
+			for(BugDtls b: bugList) {
+				if(b.getBugPriority()==EnumBugPriority.LOW) {
+					low++;
+				}
+				else if(b.getBugPriority()==EnumBugPriority.MEDIUM){
+					medium++;
+				}
+				else if(b.getBugPriority()==EnumBugPriority.HIGH){
+					high++;
+				}
+				else if(b.getBugPriority()==EnumBugPriority.HIGHEST){
+					highest++;
+				}
+			}
+			bugCount.add(low);
+			bugCount.add(medium);
+			bugCount.add(high);
+			bugCount.add(highest);
+		}
+		return bugCount;
 	}
 
 

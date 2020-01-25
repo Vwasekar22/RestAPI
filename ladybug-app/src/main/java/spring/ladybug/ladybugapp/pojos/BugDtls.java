@@ -7,6 +7,8 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -37,9 +39,9 @@ public class BugDtls implements java.io.Serializable {
 	private String bugDesc;
 	private LocalDate bugStart;
 	private LocalDate bugEnd;
-	private String bugPriority;
+	private EnumBugPriority bugPriority;
 	private Integer bugAssignee;
-	private String bugStatus;
+	private EnumBugStatus bugStatus;
 	private Integer bugMgrId;
 
 	public BugDtls() {
@@ -52,7 +54,7 @@ public class BugDtls implements java.io.Serializable {
 	}
 
 	public BugDtls(Employee emp, Project project, String bugName, String bugDesc, LocalDate bugStart, LocalDate bugEnd,
-			String bugPriority, Integer bugAssignee, String bugStatus, Integer bugMgrId) {
+			EnumBugPriority bugPriority, Integer bugAssignee, EnumBugStatus bugStatus, Integer bugMgrId) {
 		this.emp = emp;
 		this.project = project;
 		this.bugName = bugName;
@@ -137,12 +139,13 @@ public class BugDtls implements java.io.Serializable {
 		this.bugEnd = bugEnd;
 	}
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "bug_priority", length = 45)
-	public String getBugPriority() {
+	public EnumBugPriority getBugPriority() {
 		return this.bugPriority;
 	}
 
-	public void setBugPriority(String bugPriority) {
+	public void setBugPriority(EnumBugPriority bugPriority) {
 		this.bugPriority = bugPriority;
 	}
 
@@ -155,12 +158,13 @@ public class BugDtls implements java.io.Serializable {
 		this.bugAssignee = bugAssignee;
 	}
 
+	@Enumerated(EnumType.STRING)
 	@Column(name = "bug_status", length = 45)
-	public String getBugStatus() {
+	public EnumBugStatus getBugStatus() {
 		return this.bugStatus;
 	}
 
-	public void setBugStatus(String bugStatus) {
+	public void setBugStatus(EnumBugStatus bugStatus) {
 		this.bugStatus = bugStatus;
 	}
 

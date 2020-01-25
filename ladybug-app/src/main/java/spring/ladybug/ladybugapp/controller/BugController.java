@@ -22,53 +22,52 @@ import spring.ladybug.ladybugapp.services.BugService;
 @CrossOrigin(origins = "*")
 @RestController
 public class BugController {
-	
+
 	@Autowired
 	private BugService bugService;
 
 	@RequestMapping(value = "/addBug", method = RequestMethod.POST)
 	public ResponseEntity<?> m2(@RequestBody BugDtls bug) {
-			System.out.println(bug.getProject().getProjectId());
-		if(bugService.createBug(bug)) {
+		System.out.println(bug.getProject().getProjectId());
+		if (bugService.createBug(bug)) {
 			return new ResponseEntity<Boolean>(true, HttpStatus.OK);
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
-		
+
 	}
-	
+
 	@RequestMapping(value = "/getnullbugs", method = RequestMethod.GET)
 	public ResponseEntity<?> m1() {
 		List<BugDtls> bugs = bugService.listNullAssigneBug();
-		
-		if(bugs!=null) {
+
+		if (bugs != null) {
 			return new ResponseEntity<List<BugDtls>>(bugs, HttpStatus.OK);
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
-		
+
 	}
-	
+
 	@RequestMapping(value = "/changestatus", method = RequestMethod.POST)
 	public ResponseEntity<?> m4(@RequestBody BugDtls bug, @RequestBody Employee emp) {
-		//Work in Progress
+		// Work in Progress
 		/*
 		 * if(bugService.changeBugStatus(bug, emp)) { return new
 		 * ResponseEntity<Boolean>(true, HttpStatus.OK); }
 		 */
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
-		
+
 	}
-	
+
 	@RequestMapping(value = "/bug/{bugId}", method = RequestMethod.GET)
-	public ResponseEntity<?> m5(@PathVariable("bugId")Integer bugId) {
+	public ResponseEntity<?> m5(@PathVariable("bugId") Integer bugId) {
 		List<Object> bugDetails = bugService.getBugById(bugId);
-		if(bugDetails!=null)
-		{	
+		if (bugDetails != null) {
 			return new ResponseEntity<List<Object>>(bugDetails, HttpStatus.OK);
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
-		
+
 	}
-	
+
 //	//Pagination trial
 //	@RequestMapping(value = "/bugPageSort/{projectId}/{pageNo}/{pageSize}", method = RequestMethod.GET)
 //	public ResponseEntity<?> m6(@PathVariable("projectId")Integer projectId, @PathVariable("pageNo")Integer pageNo,@PathVariable("pageSize")Integer pageSize) {
@@ -79,15 +78,37 @@ public class BugController {
 //		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 //		
 //	}
-	
+
 	@GetMapping(value = "/bugs/{projectId}")
-	public ResponseEntity<?> m7(@PathVariable("projectId") Integer projectId){
+	public ResponseEntity<?> m7(@PathVariable("projectId") Integer projectId) {
 		List<BugDtls> bugDetails = bugService.getBugByProjectId(projectId);
-		if(bugDetails != null) {
+		if (bugDetails != null) {
 			return new ResponseEntity<List<BugDtls>>(bugDetails, HttpStatus.OK);
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
+
+	@GetMapping(value = "/getBugStatusCount")
+	public ResponseEntity<?> m8() {
+
+		List<Integer> bugStatusCount = bugService.getBugStatusCount();
+		if (bugStatusCount != null) {
+			return new ResponseEntity<List<Integer>>(bugStatusCount, HttpStatus.OK);
+
+		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
 	
-	
+	@GetMapping(value = "/getBugPriorityCount")
+	public ResponseEntity<?> m9() {
+
+		List<Integer> bugPriorityCount = bugService.getBugPriorityCount();
+		if (bugPriorityCount != null) {
+			return new ResponseEntity<List<Integer>>(bugPriorityCount, HttpStatus.OK);
+
+		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+
+
 }

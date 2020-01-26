@@ -1,7 +1,7 @@
 package spring.ladybug.ladybugapp.pojos;
 
 public enum EnumEmpRoles {
-	ADMIN,MANAGER,DEVTEST;
+	ADMIN,MANAGER,DEVTEST,SUPPORT;
 	
 	@Override
 	public String toString()

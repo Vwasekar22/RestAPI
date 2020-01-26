@@ -109,6 +109,18 @@ public class BugController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-
-
+	
+	
+	@RequestMapping(value = "/updateBug", method = RequestMethod.PUT)
+	public ResponseEntity<?> m10(@RequestBody BugDtls bug) {
+		try {
+			if(bugService.updateBug(bug))
+			{
+				return new ResponseEntity<Boolean>(true, HttpStatus.OK);
+			}
+		} catch (Exception e) {
+			
+		}		
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
 }

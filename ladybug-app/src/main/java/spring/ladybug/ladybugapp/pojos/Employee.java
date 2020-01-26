@@ -204,6 +204,12 @@ public class Employee implements java.io.Serializable {
 		bug.setEmp(this);
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Employee [empId=" + empId + ", empMgr=" + empMgr + ", firstName=" + firstName + ", lastName=" + lastName
+//				+ ", createdOn=" + createdOn + ", userName=" + userName + ", employeeSubOrdinates="
+//				+ employeeSubOrdinates + ", bugDtls=" + bugDtls + ", login=" + login + ", projects=" + projects + "]";
+//	}
 	public void removeBugDetails(BugDtls bug) {
 		this.bugDtls.remove(bug);
 		if (this.getEmpMgr() != null) {

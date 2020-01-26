@@ -15,6 +15,8 @@ public interface LoginAuthDao extends JpaRepository<Login, String>{
 	
 	//SELECT * FROM user WHERE reset_token = ?
 	Optional<Login> findByResetToken(String resetToken);
+
+
 	
 
 }

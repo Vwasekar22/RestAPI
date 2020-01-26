@@ -179,6 +179,20 @@ public class BugServiceImpl implements BugService,Serializable {
 		return bugCount;
 	}
 
+	@Override
+	public boolean updateBug(BugDtls bug)throws Exception {
+		BugDtls newBug = bugDao.findById(bug.getBugId()).orElse(null);
+		if(newBug!=null)
+		{
+			newBug.setBugStatus(bug.getBugStatus());
+			newBug.setBugAssignee(bug.getBugAssignee());
+			bugDao.save(newBug);
+			
+			return true;
+		}
+		return false;
+	}
+
 
 
 }

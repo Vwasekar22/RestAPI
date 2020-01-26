@@ -1,5 +1,6 @@
 package spring.ladybug.ladybugapp.services;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,6 +12,7 @@ import spring.ladybug.ladybugapp.daos.EmployeeDao;
 import spring.ladybug.ladybugapp.daos.LoginAuthDao;
 import spring.ladybug.ladybugapp.pojos.BugDtls;
 import spring.ladybug.ladybugapp.pojos.Employee;
+import spring.ladybug.ladybugapp.pojos.EnumEmpRoles;
 import spring.ladybug.ladybugapp.pojos.Login;
 import spring.ladybug.ladybugapp.pojos.Project;
 
@@ -86,5 +88,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<Employee> getEmpList() {
 		List<Employee> emps = empDao.findAll(Sort.by("empId"));
 		return emps;
+	}
+
+	@Override
+	public List<Employee> getAllManagers() {
+		List<Login> login = logDao.findAll();
+		if(login!=null)
+		{
+			List<Employee> managerList = new ArrayList<>();
+			for(Login l: login)
+			{
+				if(l.getRole()==EnumEmpRoles.MANAGER)
+				{
+					managerList.add(l.getEmp());
+				}
+			}
+			return managerList;
+		}
+		return null;
 	}
 }

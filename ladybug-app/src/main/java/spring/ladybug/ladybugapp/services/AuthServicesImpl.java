@@ -29,8 +29,7 @@ public class AuthServicesImpl implements AuthServices {
 		Optional<Login> optional = loginDao.findOne(exampleEmp);
 		if(optional.isPresent()) {
 			return optional.get();
-		}
-		
+		}		
 		return null;
 	}
 
@@ -45,7 +44,7 @@ public class AuthServicesImpl implements AuthServices {
 	}
 
 	@Override
-	public void save(Login login) {
+	public void save(Login login){
 		loginDao.save(login);
 		
 	}

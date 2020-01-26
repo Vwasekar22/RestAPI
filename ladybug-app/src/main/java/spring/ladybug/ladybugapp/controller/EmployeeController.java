@@ -33,7 +33,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	//public ResponseEntity<?> m2(@RequestBody ArrayList<LinkedHashMap<String,String>> arr) {
 	public ResponseEntity<?> m2(@RequestBody Employee emp) {
-
+		System.out.println(emp);
 		//System.out.println(arr.get(0).get("firstName"));
 		//System.out.println(arr.get(1).get("email"));
 	//	System.out.println(arr[1]);
@@ -105,5 +105,13 @@ public class EmployeeController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-
+	
+	@GetMapping(value = "/manager")
+	public ResponseEntity<?> m5(){
+		List<Employee> manager = empService.getAllManagers();
+		if(manager!=null) {
+			return new ResponseEntity<List<Employee>>(manager,HttpStatus.OK);
+		}
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
 }

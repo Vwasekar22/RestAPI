@@ -12,5 +12,6 @@ public interface BugDao extends JpaRepository<BugDtls, Integer> {
 	List<BugDtls> findByProject(Project project);
 	
 	long countByProject(Project p);
+	
 
 }

@@ -23,5 +23,7 @@ public interface BugService {
 	List<Integer> getBugStatusCount();
 	
 	List<Integer> getBugPriorityCount();
+	
+	boolean updateBug(BugDtls bug)throws Exception;
 
 }

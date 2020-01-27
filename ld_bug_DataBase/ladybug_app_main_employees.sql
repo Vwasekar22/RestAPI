@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `ladybug_app_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `ladybug_app_main`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: ladybug_app_main
@@ -32,7 +34,7 @@ CREATE TABLE `employees` (
   PRIMARY KEY (`emp_id`),
   KEY `mgr_id_idx` (`mgr_id`),
   CONSTRAINT `mgr_id` FOREIGN KEY (`mgr_id`) REFERENCES `employees` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -41,7 +43,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` (`emp_id`, `first_name`, `last_name`, `created_on`, `user_name`, `mgr_id`) VALUES (125,'admin',NULL,NULL,NULL,NULL),(126,'akash','soni',NULL,NULL,129),(127,'pankaj','sakhare',NULL,NULL,129),(128,'vishal','wasekar',NULL,NULL,130),(129,'krishna','tiwari',NULL,NULL,125),(130,'buland','khan',NULL,NULL,125);
+INSERT INTO `employees` (`emp_id`, `first_name`, `last_name`, `created_on`, `user_name`, `mgr_id`) VALUES (125,'admin',NULL,NULL,NULL,NULL),(126,'akash','soni',NULL,NULL,129),(127,'pankaj','sakhare',NULL,NULL,129),(128,'vishal','wasekar',NULL,NULL,130),(129,'krishna','tiwari',NULL,NULL,125),(130,'buland','khan',NULL,NULL,125),(131,'mahesh','katkar',NULL,'mahesh',129),(134,'karan','kaka',NULL,'karan',129),(137,'vinay','kumar',NULL,'vinay',130),(138,'Bhanu','Chandar',NULL,'astro',130);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-23 13:19:12
+-- Dump completed on 2020-01-27 10:53:58

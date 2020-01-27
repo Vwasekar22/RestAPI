@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `ladybug_app_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `ladybug_app_main`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: ladybug_app_main
@@ -41,7 +43,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` (`email`, `password`, `role`, `last_login`, `reset_token`, `emp_id`) VALUES ('asoni7667@gmail.com','akash11','DEVTEST',NULL,'',126),('buland@gmail.com','buland11','MANAGER',NULL,NULL,130),('krishna@gmail.com','krihsna11','MANAGER',NULL,NULL,129),('ladybugaug19@gmail.com','Ladybug@2020','ADMIN',NULL,NULL,125),('pankajsakhare91@gmail.com','pankaj11','DEVTEST',NULL,'bc3f012e-0fc0-4709-ad29-66b230f61fa9',127),('vwasekar22@gmail.com','vishal11','DEVTEST',NULL,'',128);
+INSERT INTO `login` (`email`, `password`, `role`, `last_login`, `reset_token`, `emp_id`) VALUES ('asoni7667@gmail.com','akash11','DEVTEST',NULL,'',126),('bhanuchandar7528@gmail.com','bhanu','DEVTEST',NULL,NULL,138),('buland@gmail.com','buland11','MANAGER',NULL,NULL,130),('karan@gmail.com','karan11','DEVTEST',NULL,NULL,134),('krishna@gmail.com','krihsna11','MANAGER',NULL,NULL,129),('ladybugaug19@gmail.com','Ladybug@2020','ADMIN',NULL,NULL,125),('mahesh@gmail.com','mahesh11','DEVTEST',NULL,NULL,131),('pankajsakhare91@gmail.com','pankaj19','DEVTEST',NULL,NULL,127),('vinay@gmail.com','vinay','DEVTEST',NULL,NULL,137),('vwasekar22@gmail.com','vishal11','DEVTEST',NULL,'',128);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -54,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-23 13:19:12
+-- Dump completed on 2020-01-27 10:53:59

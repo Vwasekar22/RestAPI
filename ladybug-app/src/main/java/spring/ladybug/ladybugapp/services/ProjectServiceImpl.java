@@ -52,4 +52,14 @@ public class ProjectServiceImpl implements ProjectService {
 		}	
 		return null;
 	}
+
+	@Override
+	public boolean addProject(Project proj) {
+		if(proj!=null)
+		{
+			project.save(proj);
+			return true;
+		}
+		return false;
+	}
 }

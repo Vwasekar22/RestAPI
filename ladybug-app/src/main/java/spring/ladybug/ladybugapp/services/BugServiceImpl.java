@@ -186,6 +186,7 @@ public class BugServiceImpl implements BugService,Serializable {
 		{
 			newBug.setBugStatus(bug.getBugStatus());
 			newBug.setBugAssignee(bug.getBugAssignee());
+			newBug.setBugPriority(bug.getBugPriority());
 			bugDao.save(newBug);
 			
 			return true;

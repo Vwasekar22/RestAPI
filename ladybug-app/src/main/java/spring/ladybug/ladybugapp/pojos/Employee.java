@@ -53,6 +53,10 @@ public class Employee implements java.io.Serializable {
 	public Employee() {
 		System.out.println("in emp d controller");
 	}
+	public Employee(int id) {
+		this.empId = id;
+	}
+	
 	public Employee(Integer empId,String firstName,String lastName) {
 		this.empId=empId;
 		this.firstName = firstName;

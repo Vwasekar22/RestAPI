@@ -17,6 +17,7 @@ public class EmailServiceImpl implements EmailService {
 		// TODO Auto-generated constructor stub
 	}
 	
+	@Async
 	@Override
 	public void sendEmail(SimpleMailMessage email) {
 		mailSender.send(email);

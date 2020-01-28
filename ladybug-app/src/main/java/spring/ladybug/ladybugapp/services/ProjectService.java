@@ -12,5 +12,6 @@ public interface ProjectService {
 	Project getProjectById(int id);
 	
 	List<Employee> getProjectEmpById(int id);
-
+	
+	boolean addProject(Project proj);
 }

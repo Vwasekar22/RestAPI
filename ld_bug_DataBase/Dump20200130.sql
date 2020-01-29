@@ -41,7 +41,7 @@ CREATE TABLE `bug_dtls` (
   KEY `FK_PROJ_ID_idx` (`bug_project_id`),
   CONSTRAINT `FK_EMP_ID` FOREIGN KEY (`bug_by_emp_id`) REFERENCES `employees` (`emp_id`),
   CONSTRAINT `FK_PROJ_ID` FOREIGN KEY (`bug_project_id`) REFERENCES `projects` (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=247 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=260 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -50,7 +50,7 @@ CREATE TABLE `bug_dtls` (
 
 LOCK TABLES `bug_dtls` WRITE;
 /*!40000 ALTER TABLE `bug_dtls` DISABLE KEYS */;
-INSERT INTO `bug_dtls` (`bug_id`, `bug_name`, `bug_desc`, `bug_start`, `bug_end`, `bug_priority`, `bug_by_emp_id`, `bug_assignee`, `bug_project_id`, `bug_status`, `bug_mgr_id`) VALUES (240,'BUG1','BUG-DESC-1',NULL,NULL,'HIGH',126,NULL,11,'NEW',129),(241,'BUG2','BUG-DESC-2',NULL,NULL,'LOW',127,126,11,'INPROGRESS',129),(242,'BUG3','BUG-DESC-3',NULL,NULL,'HIGHEST',126,NULL,22,'NEW',129),(243,'BUG4','BUG-DESC-4',NULL,NULL,'MEDIUM',127,NULL,22,'NEW',129),(244,'BUG5','BUG-DESC-5',NULL,NULL,'LOW',128,NULL,33,'NEW',130),(245,'Employee Registration Not Visible','Employee Registration functionality should be visible for Admin to add a new employee to this system',NULL,NULL,'HIGHEST',126,127,11,'INPROGRESS',129),(246,'BUG FOR TEST','TESTING BUG ',NULL,NULL,'HIGH',126,129,22,'INPROGRESS',129);
+INSERT INTO `bug_dtls` (`bug_id`, `bug_name`, `bug_desc`, `bug_start`, `bug_end`, `bug_priority`, `bug_by_emp_id`, `bug_assignee`, `bug_project_id`, `bug_status`, `bug_mgr_id`) VALUES (240,'BUG-1','BUG-DESCRIPTION-1',NULL,NULL,'HIGH',127,NULL,11,'NEW',129),(241,'BUG-2','BUG-DESCRIPTION-2',NULL,NULL,'LOW',126,142,22,'INPROGRESS',129),(242,'BUG-3','BUG-DESCRIPTION-3',NULL,NULL,'MEDIUM',148,142,55,'FIXED',129),(243,'BUG-4','BUG-DESCRIPTION-4',NULL,NULL,'HIGHEST',143,142,22,'CLOSED',129),(244,'BUG-5','BUG-DESCRIPTION-5',NULL,NULL,'LOWEST',148,NULL,11,'NEW',129),(245,'BUG-6','BUG-DESCRIPTION-6',NULL,NULL,'HIGH',128,NULL,33,'NEW',130),(246,'BUG-7','BUG-DESCRIPTION-7',NULL,NULL,'LOW',131,146,33,'INPROGRESS',130),(247,'BUG-8','BUG-DESCRIPTION-8',NULL,NULL,'MEDIUM',144,146,44,'FIXED',130),(248,'BUG-9','BUG-DESCRIPTION-9',NULL,NULL,'HIGHEST',145,146,33,'CLOSED',130),(249,'BUG-10','BUG-DESCRIPTION-10',NULL,NULL,'LOWEST',144,146,44,'INPROGRESS',130),(250,'BUG-11','BUG-DESCRIPTION-11',NULL,NULL,'HIGH',134,NULL,66,'NEW',132),(251,'BUG-12','BUG-DESCRIPTION-12',NULL,NULL,'LOW',136,135,88,'INPROGRESS',132),(252,'BUG-13','BUG-DESCRIPTION-13',NULL,NULL,'MEDIUM',137,135,99,'FIXED',132),(253,'BUG-14','BUG-DESCRIPTION-14',NULL,NULL,'HIGHEST',137,135,66,'INPROGRESS',132),(254,'BUG-15','BUG-DESCRIPTION-15',NULL,NULL,'LOWEST',134,135,66,'CLOSED',132),(255,'BUG-16','BUG-DESCRIPTION-16',NULL,NULL,'HIGH',139,NULL,77,'NEW',133),(256,'BUG-17','BUG-DESCRIPTION-17',NULL,NULL,'LOW',140,138,111,'INPROGRESS',133),(257,'BUG-18','BUG-DESCRIPTION-18',NULL,NULL,'MEDIUM',141,138,77,'FIXED',133),(258,'BUG-19','BUG-DESCRIPTION-19',NULL,NULL,'HIGHEST',141,138,77,'CLOSED',133),(259,'BUG-20','BUG-DESCRIPTION-20',NULL,NULL,'LOWEST',139,138,111,'INPROGRESS',133);
 /*!40000 ALTER TABLE `bug_dtls` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -77,7 +77,7 @@ CREATE TABLE `emp_project_relation` (
 
 LOCK TABLES `emp_project_relation` WRITE;
 /*!40000 ALTER TABLE `emp_project_relation` DISABLE KEYS */;
-INSERT INTO `emp_project_relation` (`proj_id`, `e_id`) VALUES (11,126),(22,126),(11,127),(22,127),(33,128),(11,129),(22,129),(33,130),(11,139),(46,141),(48,141),(46,143);
+INSERT INTO `emp_project_relation` (`proj_id`, `e_id`) VALUES (11,126),(22,126),(11,127),(22,127),(33,128),(11,129),(22,129),(33,130);
 /*!40000 ALTER TABLE `emp_project_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,7 @@ CREATE TABLE `employees` (
   PRIMARY KEY (`emp_id`),
   KEY `mgr_id_idx` (`mgr_id`),
   CONSTRAINT `mgr_id` FOREIGN KEY (`mgr_id`) REFERENCES `employees` (`emp_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=144 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -107,7 +107,7 @@ CREATE TABLE `employees` (
 
 LOCK TABLES `employees` WRITE;
 /*!40000 ALTER TABLE `employees` DISABLE KEYS */;
-INSERT INTO `employees` (`emp_id`, `first_name`, `last_name`, `created_on`, `user_name`, `mgr_id`) VALUES (125,'admin',NULL,NULL,NULL,NULL),(126,'akash','soni',NULL,NULL,129),(127,'pankaj','sakhare',NULL,NULL,129),(128,'vishal','wasekar',NULL,NULL,130),(129,'krishna','tiwari',NULL,NULL,125),(130,'buland','khan',NULL,NULL,125),(131,'mahesh','katkar',NULL,'mahesh',129),(134,'karan','kaka',NULL,'karan',129),(137,'vinay','kumar',NULL,'vinay',130),(138,'Bhanu','Chandar',NULL,'astro',130),(139,'rohit','sharma',NULL,'rohit',129),(141,'rounak','gupta',NULL,'rounak',125),(142,'tony','stark',NULL,'ironman',125),(143,'black ','widow',NULL,'bkackwidow',125);
+INSERT INTO `employees` (`emp_id`, `first_name`, `last_name`, `created_on`, `user_name`, `mgr_id`) VALUES (125,'admin',NULL,NULL,NULL,NULL),(126,'akash','soni',NULL,NULL,129),(127,'pankaj','sakhare',NULL,NULL,129),(128,'vishal','wasekar',NULL,NULL,130),(129,'krishna','tiwari',NULL,NULL,125),(130,'buland','khan',NULL,NULL,125),(131,'Bhanu','Chandar',NULL,NULL,130),(132,'Vijay','Kumar',NULL,NULL,125),(133,'Vinay','Kumar',NULL,NULL,125),(134,'Sri','Charan',NULL,NULL,132),(135,'Vinod','Chowdary',NULL,NULL,132),(136,'Pramod','K',NULL,NULL,132),(137,'sathish','Chowdary',NULL,NULL,132),(138,'Vamsi','Krishna',NULL,NULL,133),(139,'Kiran','Jadho',NULL,NULL,133),(140,'Laxmikanth','Mahale',NULL,NULL,133),(141,'Kashish','Agarwal',NULL,NULL,133),(142,'Aman','Pandey',NULL,NULL,129),(143,'Karthick','Ramani',NULL,NULL,129),(144,'Apurup','Reddy',NULL,NULL,130),(145,'Akash','Reddy',NULL,NULL,130),(146,'Vineel','Kumar',NULL,NULL,130),(147,'Prasad','Deshkar',NULL,NULL,130),(148,'Dhirendra','Pratap',NULL,NULL,129);
 /*!40000 ALTER TABLE `employees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -137,7 +137,7 @@ CREATE TABLE `login` (
 
 LOCK TABLES `login` WRITE;
 /*!40000 ALTER TABLE `login` DISABLE KEYS */;
-INSERT INTO `login` (`email`, `password`, `role`, `last_login`, `reset_token`, `emp_id`) VALUES ('asoni7667@gmail.com','akash11','DEVTEST',NULL,'',126),('bhanuchandar7528@gmail.com','bhanu','DEVTEST',NULL,NULL,138),('black@gmail.com','black11','DEVTEST',NULL,NULL,143),('buland@gmail.com','buland11','MANAGER',NULL,NULL,130),('karan@gmail.com','karan11','DEVTEST',NULL,NULL,134),('krishna@gmail.com','krihsna11','MANAGER',NULL,NULL,129),('ladybugaug19@gmail.com','Ladybug@2020','ADMIN',NULL,NULL,125),('mahesh@gmail.com','mahesh11','DEVTEST',NULL,NULL,131),('pankajsakhare91@gmail.com','pankaj19','DEVTEST',NULL,NULL,127),('rohit@gmail.com','rohit11','DEVTEST',NULL,NULL,139),('rounak@gmail.com','rounak11','MANAGER',NULL,NULL,141),('tony@gmail.com','tony11','MANAGER',NULL,NULL,142),('vinay@gmail.com','vinay','DEVTEST',NULL,NULL,137),('vwasekar22@gmail.com','vishal11','DEVTEST',NULL,'',128);
+INSERT INTO `login` (`email`, `password`, `role`, `last_login`, `reset_token`, `emp_id`) VALUES ('akash@gmail.com','akash11','DEVTEST',NULL,NULL,145),('aman@gmail.com','aman11','SUPPORT',NULL,NULL,142),('apurup@gmail.com','apurup11','DEVTEST',NULL,NULL,144),('asoni7667@gmail.com','akash11','DEVTEST',NULL,'',126),('bhanuchandar7528@gmail.com','bhanu11','DEVTEST',NULL,NULL,131),('buland@gmail.com','buland11','MANAGER',NULL,NULL,130),('charan@gmail.com','charan11','DEVTEST',NULL,NULL,134),('dhirendra@gmail.com','dhirendra11','DEVTEST',NULL,NULL,148),('karthick@gmail.com','karthick11','DEVTEST',NULL,NULL,143),('kashish@gmail.com','kashish11','DEVTEST',NULL,NULL,141),('kiran@gmail.com','kiran11','DEVTEST',NULL,NULL,139),('krishna@gmail.com','krihsna11','MANAGER',NULL,NULL,129),('ladybugaug19@gmail.com','Ladybug@2020','ADMIN',NULL,NULL,125),('laxmikanth@gmail.com','laxmikanth11','DEVTEST',NULL,NULL,140),('pankajsakhare91@gmail.com','pankaj11','DEVTEST',NULL,'bc3f012e-0fc0-4709-ad29-66b230f61fa9',127),('pramod@gmail.com','pramod11','DEVTEST',NULL,NULL,136),('prasad@gmail.com','prasad11','DEVTEST',NULL,NULL,147),('satish@gmail.com','satish11','DEVTEST',NULL,NULL,137),('vamsi@gmail.com','vamsi11','SUPPORT',NULL,NULL,138),('vijaykatabathini96@gmail.com','vijay11','MANAGER',NULL,NULL,132),('vinay@gmail.com','vinay11','MANAGER',NULL,NULL,133),('vineel@gmail.com','vineel11','SUPPORT',NULL,NULL,146),('vinod@gmail.com','vinod11','SUPPORT',NULL,NULL,135),('vwasekar22@gmail.com','vishal11','DEVTEST',NULL,'',128);
 /*!40000 ALTER TABLE `login` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +154,7 @@ CREATE TABLE `projects` (
   `project_desc` varchar(250) DEFAULT NULL,
   `project_mgr` int(11) DEFAULT NULL,
   PRIMARY KEY (`project_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +163,7 @@ CREATE TABLE `projects` (
 
 LOCK TABLES `projects` WRITE;
 /*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-INSERT INTO `projects` (`project_id`, `project_name`, `project_desc`, `project_mgr`) VALUES (11,'project11','pro11',129),(22,'project22','pro22',129),(33,'project33','pro33',130),(45,'project44','project desc 44',130),(46,'cdac portal','cdac exam and attendance portal for students.',129),(48,'E-Commerce Website','Online shopping WebSite',NULL);
+INSERT INTO `projects` (`project_id`, `project_name`, `project_desc`, `project_mgr`) VALUES (11,'Swiggy','Food Delivering App',129),(22,'Monster','Job Posting Application',129),(33,'EBook App','Sharing Books',130),(44,'ECommerce','Shopping Application',130),(55,'Student Portal','College Management Student Portal',129),(66,'Localite','Shopping Grocery Application',132),(77,'Doctor Management App','Doctor Management Application ',133),(88,'Social App','Metting Application, Social Networking,  Sharing views',132),(99,'Health App','Monitoring Health Conditions',132),(111,'Quickr','Platform to Sell or Exchange the goods',133);
 /*!40000 ALTER TABLE `projects` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -176,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-29  2:19:07
+-- Dump completed on 2020-01-30  0:36:13

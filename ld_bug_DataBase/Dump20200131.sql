@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `ladybug_app_main` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */;
+USE `ladybug_app_main`;
 -- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: ladybug_app_main
@@ -75,7 +77,7 @@ CREATE TABLE `emp_project_relation` (
 
 LOCK TABLES `emp_project_relation` WRITE;
 /*!40000 ALTER TABLE `emp_project_relation` DISABLE KEYS */;
-INSERT INTO `emp_project_relation` (`proj_id`, `e_id`) VALUES (22,126),(11,127),(33,128),(33,131),(66,134),(88,136),(66,137),(99,137),(77,139),(111,139),(111,140),(77,141),(22,143),(44,144),(33,145),(11,148),(55,148);
+INSERT INTO `emp_project_relation` (`proj_id`, `e_id`) VALUES (11,126),(22,126),(11,127),(22,127),(33,128),(44,128),(33,131),(44,131),(66,134),(88,134),(99,134),(66,136),(88,136),(99,136),(66,137),(88,137),(99,137),(77,139),(111,139),(77,140),(111,140),(77,141),(11,143),(22,143),(33,144),(44,144),(33,145),(44,147),(11,148),(22,148),(55,148);
 /*!40000 ALTER TABLE `emp_project_relation` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,4 +176,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-01-30  1:01:42
+-- Dump completed on 2020-01-31  0:59:58

@@ -22,7 +22,7 @@ public class ProjectController {
 
 	@Autowired
 	private ProjectService project;
-	
+	//Getting list of projects
 	@RequestMapping(value = "/projects", method = RequestMethod.GET)
 	public ResponseEntity<?> m1() {		
 		List<Project> pro = project.findAll();		
@@ -32,7 +32,7 @@ public class ProjectController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 	
-	
+	//Getting project details by project ID
 	@RequestMapping(value = "/project/{projectId}", method = RequestMethod.GET)
 	public ResponseEntity<?> m2(@PathVariable("projectId")Integer projectId) {
 		Project pr=project.getProjectById(projectId);
@@ -41,7 +41,7 @@ public class ProjectController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-	
+	//Getting the list of employees whose role is DEVTEST by project ID
 	@RequestMapping(value = "/employeesDevTest/{projectId}", method = RequestMethod.GET)
 	public ResponseEntity<?> m3(@PathVariable("projectId")Integer projectId) {
 		List<Employee> emp = project.getProjectEmpById(projectId);
@@ -50,7 +50,7 @@ public class ProjectController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-	
+	//Adding the project
 	@RequestMapping(value = "/addProject", method = RequestMethod.POST)
 	public ResponseEntity<?> m4(@RequestBody Project proj) {
 		if(project.addProject(proj))

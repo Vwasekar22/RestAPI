@@ -37,7 +37,7 @@ public class PasswordController {
 		
 	}
 
-	
+	//Sending password reset token to registered email
 	@RequestMapping(value = "/forgot", method = RequestMethod.POST)
 	public ResponseEntity<?> processForgotPasswordForm(@RequestBody Login emps, HttpServletRequest request) {
 		System.out.println("inside forgot");
@@ -78,7 +78,7 @@ public class PasswordController {
 
 	}
 
-	// Process reset password form
+	// Resetting the password by comparing the reset token
 	@RequestMapping(value = "/reset/{token}", method = RequestMethod.POST)
 	public ResponseEntity<?> setNewPassword(@RequestBody Login emp, HttpServletRequest request,
 			@PathVariable("token") String token) {

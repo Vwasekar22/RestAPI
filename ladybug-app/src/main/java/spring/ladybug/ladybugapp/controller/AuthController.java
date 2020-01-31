@@ -24,7 +24,7 @@ public class AuthController {
 	@Autowired
 	private EmployeeService empService;
 	
-	
+	//Authentication 
 	@RequestMapping(value="/authenticate",method = RequestMethod.POST)
 	public ResponseEntity<?> m1(@RequestBody Login emp)
 	{

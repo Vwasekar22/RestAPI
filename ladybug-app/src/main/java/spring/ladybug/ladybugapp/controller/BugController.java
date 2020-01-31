@@ -25,7 +25,7 @@ public class BugController {
 
 	@Autowired
 	private BugService bugService;
-
+	//Adding a bug
 	@RequestMapping(value = "/addBug", method = RequestMethod.POST)
 	public ResponseEntity<?> m2(@RequestBody BugDtls bug) {
 		System.out.println(bug.getProject().getProjectId());
@@ -35,7 +35,7 @@ public class BugController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 
 	}
-
+	//Getting List of bugs whose assignee is null
 	@RequestMapping(value = "/getnullbugs", method = RequestMethod.GET)
 	public ResponseEntity<?> m1() {
 		List<BugDtls> bugs = bugService.listNullAssigneBug();
@@ -57,7 +57,7 @@ public class BugController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 
 	}
-
+	//Getting Bug Details by its ID
 	@RequestMapping(value = "/bug/{bugId}", method = RequestMethod.GET)
 	public ResponseEntity<?> m5(@PathVariable("bugId") Integer bugId) {
 		List<Object> bugDetails = bugService.getBugById(bugId);
@@ -78,7 +78,7 @@ public class BugController {
 //		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 //		
 //	}
-
+	//Getting List of Bugs by project Id
 	@GetMapping(value = "/bugs/{projectId}")
 	public ResponseEntity<?> m7(@PathVariable("projectId") Integer projectId) {
 		List<BugDtls> bugDetails = bugService.getBugByProjectId(projectId);
@@ -87,7 +87,7 @@ public class BugController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-
+	//Getting the Array of counts of bug status as new,in progress,fixed,closed
 	@GetMapping(value = "/getBugStatusCount")
 	public ResponseEntity<?> m8() {
 
@@ -98,7 +98,7 @@ public class BugController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-	
+	//Getting the Array of counts of priority as low,medium,high,highest 
 	@GetMapping(value = "/getBugPriorityCount")
 	public ResponseEntity<?> m9() {
 
@@ -110,7 +110,7 @@ public class BugController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 	
-	
+	//Updating Bug Details
 	@RequestMapping(value = "/updateBug", method = RequestMethod.PUT)
 	public ResponseEntity<?> m10(@RequestBody BugDtls bug) {
 		try {

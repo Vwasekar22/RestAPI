@@ -29,7 +29,7 @@ public class EmployeeController {
 	
 	@Autowired
 	private AuthServices authService;
-
+	//Registering New Employee
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	//public ResponseEntity<?> m2(@RequestBody ArrayList<LinkedHashMap<String,String>> arr) {
 	public ResponseEntity<?> m2(@RequestBody Employee emp) {
@@ -49,7 +49,7 @@ public class EmployeeController {
 
 	}
 	
-	
+	//Removing existing employee
 	@RequestMapping(value = "/remove", method = RequestMethod.DELETE)
 	// public ResponseEntity<?> m2(@RequestBody
 	// ArrayList<LinkedHashMap<String,String>> arr) {
@@ -69,7 +69,7 @@ public class EmployeeController {
 //		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-	
+	//Getting Employee Details by Employee ID
 	@RequestMapping(value = "/employee/{empId}", method = RequestMethod.GET)
 	public ResponseEntity<?> m3(@PathVariable("empId")int empId) {
 		
@@ -85,6 +85,7 @@ public class EmployeeController {
 	/*
 	 * Fetching Managers details using currently logged in emp.
 	 */
+	//Getting the managers details by Employee ID
 	@RequestMapping(value = "/empMgr/{empId}", method = RequestMethod.GET)
 	public ResponseEntity<?> m6(@PathVariable("empId")int empId) {
 		
@@ -97,6 +98,7 @@ public class EmployeeController {
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
 	
+	//Getting the list of employees
 	@GetMapping(value = "/employees")
 	public ResponseEntity<?> m4(){
 		List<Employee> emps = empService.getEmpList();
@@ -105,7 +107,7 @@ public class EmployeeController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
-	
+	//Getting the list of managers
 	@GetMapping(value = "/manager")
 	public ResponseEntity<?> m5(){
 		List<Employee> manager = empService.getAllManagers();

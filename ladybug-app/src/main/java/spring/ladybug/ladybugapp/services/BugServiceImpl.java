@@ -153,7 +153,7 @@ public class BugServiceImpl implements BugService,Serializable {
 		List<BugDtls> bugList = bugDao.findAll();
 		List<Integer> bugCount = new ArrayList<>();
 		if(bugList!=null)
-		{
+		{	int lowest=0;
 			int low=0;
 			int medium=0;
 			int high=0;
@@ -171,7 +171,11 @@ public class BugServiceImpl implements BugService,Serializable {
 				else if(b.getBugPriority()==EnumBugPriority.HIGHEST){
 					highest++;
 				}
+				else if(b.getBugPriority()==EnumBugPriority.LOWEST){
+					lowest++;
+				}
 			}
+			bugCount.add(lowest);
 			bugCount.add(low);
 			bugCount.add(medium);
 			bugCount.add(high);

@@ -1,6 +1,7 @@
 package spring.ladybug.ladybugapp.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -59,4 +60,40 @@ public class ProjectController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
+	
+	//Getting list of projects which are under the DEVTEST
+	@RequestMapping(value = "/getProjectsUnderEmp/{empId}", method = RequestMethod.GET)
+	public ResponseEntity<?> m4(@PathVariable("empId")Integer empId) {		
+		Set<Project> projs = project.getProjectsUnderEmp(empId);
+		if(projs!=null)
+		{
+			return new ResponseEntity<Set<Project>>(projs, HttpStatus.OK);
+		}
+					
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+	//Getting list of projects which are under the MANAGER
+	@RequestMapping(value = "/getProjectsUnderMgr/{empId}", method = RequestMethod.GET)
+	public ResponseEntity<?> m5(@PathVariable("empId")Integer empId) {		
+		Set<Project> projs = project.getProjectsUnderMgr(empId);
+		if(projs!=null)
+		{
+			return new ResponseEntity<Set<Project>>(projs, HttpStatus.OK);
+		}
+					
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+	
+	//Getting list of projects which are under the SUPPORT
+	@RequestMapping(value = "/getProjectsUnderSupport/{empId}", method = RequestMethod.GET)
+	public ResponseEntity<?> m6(@PathVariable("empId")Integer empId) {		
+		Set<Project> projs = project.getProjectsUnderSupport(empId);
+		if(projs!=null)
+		{
+			return new ResponseEntity<Set<Project>>(projs, HttpStatus.OK);
+		}
+					
+		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+	}
+	
 }

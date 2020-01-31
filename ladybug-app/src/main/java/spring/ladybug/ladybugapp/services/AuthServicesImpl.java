@@ -5,10 +5,11 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import spring.ladybug.ladybugapp.daos.LoginAuthDao;
 import spring.ladybug.ladybugapp.pojos.Login;
-
+@Transactional
 @Service
 public class AuthServicesImpl implements AuthServices {
 

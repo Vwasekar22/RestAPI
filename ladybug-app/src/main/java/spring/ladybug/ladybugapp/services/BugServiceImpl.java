@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import spring.ladybug.ladybugapp.daos.BugDao;
 import spring.ladybug.ladybugapp.pojos.BugDtls;
@@ -15,7 +16,7 @@ import spring.ladybug.ladybugapp.pojos.EnumBugPriority;
 import spring.ladybug.ladybugapp.pojos.EnumBugStatus;
 import spring.ladybug.ladybugapp.pojos.Login;
 import spring.ladybug.ladybugapp.pojos.Project;
-
+@Transactional
 @Service
 public class BugServiceImpl implements BugService,Serializable {
 	

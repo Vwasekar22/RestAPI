@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import spring.ladybug.ladybugapp.daos.EmployeeDao;
 import spring.ladybug.ladybugapp.daos.LoginAuthDao;
@@ -15,7 +16,7 @@ import spring.ladybug.ladybugapp.pojos.Employee;
 import spring.ladybug.ladybugapp.pojos.EnumEmpRoles;
 import spring.ladybug.ladybugapp.pojos.Login;
 import spring.ladybug.ladybugapp.pojos.Project;
-
+@Transactional
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 

@@ -2,6 +2,7 @@ package spring.ladybug.ladybugapp.controller;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -116,4 +117,15 @@ public class EmployeeController {
 		}
 		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
 	}
+	
+//	//Getting list of employees which are working under same project
+//	@RequestMapping(value = "/getEmpsUnderSameProject/{empId}", method = RequestMethod.GET)
+//	public ResponseEntity<?> m7(@PathVariable("empId")int empId) {
+//		Set<Employee> empList = empService.getEmpsUnderSameProject(empId);
+//		
+//		if(empList!=null) {
+//			return new ResponseEntity<Set<Employee>>(empList, HttpStatus.OK);
+//		}
+//		return new ResponseEntity<Boolean>(false, HttpStatus.OK);
+//	}
 }

@@ -3,6 +3,7 @@ package spring.ladybug.ladybugapp.services;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
@@ -108,4 +109,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		return null;
 	}
+
+//	@Override
+//	public Set<Employee> getEmpsUnderSameProject(int empId) {
+//		Employee emp = empDao.findById(empId).orElse(null);
+//		if(emp!=null)
+//		{
+//			Employee empMgr = emp.getEmpMgr();
+//			Set<Employee> empList= empMgr.getEmployeeSubOrdinates();
+//			return empList;
+//		}
+//		return null;
+//	}
 }
